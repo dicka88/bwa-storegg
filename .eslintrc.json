@@ -12,7 +12,7 @@
         "ecmaFeatures": {
             "jsx": true
         },
-        "ecmaVersion": 13,
+        "ecmaVersion": 2018,
         "sourceType": "module"
     },
     "plugins": [
@@ -20,5 +20,16 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "react/react-in-jsx-scope": "off",
+        "jsx-a11y/label-has-associated-control":"off",
+        "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
+    },
+    "settings": {
+        "import/extensions": [".ts", ".tsx"],
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        }
     }
 }
