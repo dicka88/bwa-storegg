@@ -59,7 +59,7 @@ export default function Navbar() {
                       className="btn btn-sign-in d-flex justify-content-center ms-lg-2 rounded-pill"
                       href="/login"
                       role="button"
-                      >
+                    >
                       Sign In
                     </a>
                   </Link>

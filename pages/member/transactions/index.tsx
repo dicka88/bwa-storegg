@@ -1,6 +1,6 @@
-import Link from 'next/link'
-import React from 'react'
-import Sidebar from '../../../components/Sidebar'
+import Link from 'next/link';
+import React from 'react';
+import Sidebar from '../../../components/Sidebar';
 
 export default function MemberTransactions() {
   return (
@@ -16,14 +16,12 @@ export default function MemberTransactions() {
           <div className="row mt-30 mb-20">
             <div className="col-lg-12 col-12 main-content">
               <div id="list_status_title">
-                <a data-filter="*" href="#" className="btn btn-status rounded-pill text-sm btn-active me-3">
+                <a data-filter="*" href="/#" className="btn btn-status rounded-pill text-sm btn-active me-3">
                   All Trx
                 </a>
-                <a data-filter="success" href="#"
-                  className="btn btn-status rounded-pill text-sm me-3">Success</a>
-                <a data-filter="pending" href="#"
-                  className="btn btn-status rounded-pill text-sm me-3">Pending</a>
-                <a data-filter="failed" href="#" className="btn btn-status rounded-pill text-sm me-3">Failed</a>
+                <a data-filter="success" href="/#" className="btn btn-status rounded-pill text-sm me-3">Success</a>
+                <a data-filter="pending" href="/#" className="btn btn-status rounded-pill text-sm me-3">Pending</a>
+                <a data-filter="failed" href="/#" className="btn btn-status rounded-pill text-sm me-3">Failed</a>
               </div>
             </div>
           </div>
@@ -43,15 +41,22 @@ export default function MemberTransactions() {
                 <tbody id="list_status_item">
                   <tr data-category="pending" className="align-middle">
                     <th scope="row">
-                      <img className="float-start me-3 mb-lg-0 mb-3" src="/img/overview-1.png"
-                        width="80" height="60" alt="" />
-                        <div className="game-title-header">
-                          <p className="game-title fw-medium text-start color-palette-1 m-0">Mobile
-                            Legends:
-                            The New
-                            Battle 2021</p>
-                          <p className="text-xs fw-normal text-start color-palette-2 m-0">Desktop</p>
-                        </div>
+                      <img
+                        className="float-start me-3 mb-lg-0 mb-3"
+                        src="/img/overview-1.png"
+                        width="80"
+                        height="60"
+                        alt=""
+                      />
+                      <div className="game-title-header">
+                        <p className="game-title fw-medium text-start color-palette-1 m-0">
+                          Mobile
+                          Legends:
+                          The New
+                          Battle 2021
+                        </p>
+                        <p className="text-xs fw-normal text-start color-palette-2 m-0">Desktop</p>
+                      </div>
                     </th>
                     <td>
                       <p className="fw-medium color-palette-1 m-0">200 Gold</p>
@@ -61,24 +66,33 @@ export default function MemberTransactions() {
                     </td>
                     <td>
                       <div>
-                        <span className="float-start icon-status pending"></span>
+                        <span className="float-start icon-status pending" />
                         <p className="fw-medium text-start color-palette-1 m-0 position-relative">
-                          Pending</p>
+                          Pending
+                        </p>
                       </div>
                     </td>
                     <td>
-                      <Link href="/member/transactions/1" passHref>
-                        <a className="btn btn-status rounded-pill text-sm">Details</a>
+                      <Link href="/member/transactions/1">
+                        <a href="/member/transactions/1" className="btn btn-status rounded-pill text-sm">Details</a>
                       </Link>
                     </td>
                   </tr>
                   <tr data-category="success" className="align-middle">
                     <th scope="row">
-                      <img className="float-start me-3 mb-lg-0 mb-3" src="/img/overview-2.png"
-                        width="80" height="60" alt="" />
+                      <img
+                        className="float-start me-3 mb-lg-0 mb-3"
+                        src="/img/overview-2.png"
+                        width="80"
+                        height="60"
+                        alt=""
+                      />
                       <div className="game-title-header">
-                        <p className="game-title fw-medium text-start color-palette-1 m-0">Call of
-                          Duty:Modern</p>
+                        <p className="game-title fw-medium text-start color-palette-1 m-0">
+                          Call of
+                          Duty:Modern
+
+                        </p>
                         <p className="text-xs fw-normal text-start color-palette-2 m-0">Desktop</p>
                       </div>
                     </th>
@@ -90,25 +104,40 @@ export default function MemberTransactions() {
                     </td>
                     <td>
                       <div>
-                        <span className="float-start icon-status success"></span>
+                        <span className="float-start icon-status success" />
                         <p className="fw-medium text-start color-palette-1 m-0 position-relative">
-                          Success</p>
+                          Success
+
+                        </p>
                       </div>
                     </td>
                     <td>
-                      <a href="../member/transactions-detail.html"
-                        className="btn btn-status rounded-pill text-sm">Details</a>
+                      <a
+                        href="../member/transactions-detail.html"
+                        className="btn btn-status rounded-pill text-sm"
+                      >
+                        Details
+
+                      </a>
                     </td>
                   </tr>
                   <tr data-category="failed" className="align-middle">
                     <th scope="row">
-                      <img className="float-start me-3 mb-lg-0 mb-3" src="/img/overview-3.png"
-                        width="80" height="60" alt="" />
-                        <div className="game-title-header">
-                          <p className="game-title fw-medium text-start color-palette-1 m-0">Clash of
-                            Clans</p>
-                          <p className="text-xs fw-normal text-start color-palette-2 m-0">Mobile</p>
-                        </div>
+                      <img
+                        className="float-start me-3 mb-lg-0 mb-3"
+                        src="/img/overview-3.png"
+                        width="80"
+                        height="60"
+                        alt=""
+                      />
+                      <div className="game-title-header">
+                        <p className="game-title fw-medium text-start color-palette-1 m-0">
+                          Clash of
+                          Clans
+
+                        </p>
+                        <p className="text-xs fw-normal text-start color-palette-2 m-0">Mobile</p>
+                      </div>
                     </th>
                     <td>
                       <p className="fw-medium color-palette-1 m-0">100 Gold</p>
@@ -118,23 +147,37 @@ export default function MemberTransactions() {
                     </td>
                     <td>
                       <div>
-                        <span className="float-start icon-status failed"></span>
-                        <p className="fw-medium text-start color-palette-1 m-0 position-relative">Failed
+                        <span className="float-start icon-status failed" />
+                        <p className="fw-medium text-start color-palette-1 m-0 position-relative">
+                          Failed
                         </p>
                       </div>
                     </td>
                     <td>
-                      <a href="../member/transactions-detail.html"
-                        className="btn btn-status rounded-pill text-sm">Details</a>
+                      <a
+                        href="../member/transactions-detail.html"
+                        className="btn btn-status rounded-pill text-sm"
+                      >
+                        Details
+
+                      </a>
                     </td>
                   </tr>
                   <tr data-category="pending" className="align-middle">
                     <th scope="row">
-                      <img className="float-start me-3 mb-lg-0 mb-3" src="/img/overview-4.png"
-                        width="80" height="60" alt="" />
+                      <img
+                        className="float-start me-3 mb-lg-0 mb-3"
+                        src="/img/overview-4.png"
+                        width="80"
+                        height="60"
+                        alt=""
+                      />
                       <div className="game-title-header">
-                        <p className="game-title fw-medium text-start color-palette-1 m-0">The Royal
-                          Game</p>
+                        <p className="game-title fw-medium text-start color-palette-1 m-0">
+                          The Royal
+                          Game
+
+                        </p>
                         <p className="text-xs fw-normal text-start color-palette-2 m-0">Mobile</p>
                       </div>
                     </th>
@@ -146,14 +189,21 @@ export default function MemberTransactions() {
                     </td>
                     <td>
                       <div>
-                        <span className="float-start icon-status pending"></span>
+                        <span className="float-start icon-status pending" />
                         <p className="fw-medium text-start color-palette-1 m-0 position-relative">
-                          Pending</p>
+                          Pending
+
+                        </p>
                       </div>
                     </td>
                     <td>
-                      <a href="../member/transactions-detail.html"
-                        className="btn btn-status rounded-pill text-sm">Details</a>
+                      <a
+                        href="../member/transactions-detail.html"
+                        className="btn btn-status rounded-pill text-sm"
+                      >
+                        Details
+
+                      </a>
                     </td>
                   </tr>
                 </tbody>
@@ -163,5 +213,5 @@ export default function MemberTransactions() {
         </div>
       </main>
     </section>
-  )
+  );
 }

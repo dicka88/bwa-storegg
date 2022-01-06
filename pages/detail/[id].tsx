@@ -34,7 +34,6 @@ export default function DetailId() {
                   Mobile Legends:
                   <br />
                   The New Battle 2021
-
                 </h2>
                 <p className="text-lg color-palette-2 mb-0">Category: Mobile</p>
               </div>
