@@ -22,7 +22,16 @@
     "rules": {
         "react/react-in-jsx-scope": "off",
         "jsx-a11y/label-has-associated-control":"off",
+        "react/jsx-props-no-spreading": "off",
         "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "jsx": "never",
+                "tsx": "never"
+            }
+        ]
     },
     "settings": {
         "import/extensions": [".ts", ".tsx"],
