@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import Footer from '../Footer';
+import Footer from '../organisms/Footer';
 import Navbar from '../organisms/Navbar';
 
 interface Props {
