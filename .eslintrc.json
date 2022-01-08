@@ -24,7 +24,7 @@
         "jsx-a11y/label-has-associated-control":"off",
         "react/jsx-props-no-spreading": "off",
         "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
-        "jsx-ally/anchor-is-valid": "off",
+        "jsx-a11y/anchor-is-valid": "off",
         "import/extensions": [
             "error",
             "ignorePackages",
