@@ -28,7 +28,7 @@ export default function Sidebar() {
           <MenuItem title="Messages" link="/member/messages" icon="/icon/ic-menu-message.svg" active={path === '/member/messages'} />
           <MenuItem title="Card" link="/member/card" icon="/icon/ic-menu-card.svg" active={path === '/member/card'} />
           <MenuItem title="Rewards" link="/member/rewards" icon="/icon/ic-menu-reward.svg" active={path === '/member/rewards'} />
-          <MenuItem title="Settings" link="/member/settings" icon="/icon/ic-menu-setting.svg" active={path === '/member/settings'} />
+          <MenuItem title="Settings" link="/member/edit-profile" icon="/icon/ic-menu-setting.svg" active={path === '/member/edit-profile'} />
           <MenuItem title="Log out" link="/member/logout" icon="/icon/ic-menu-logout.svg" active={path === '/member/logout'} />
         </div>
         <Footer />
