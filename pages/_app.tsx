@@ -5,6 +5,7 @@ import 'aos/dist/aos.css';
 import '../styles/utilities.css';
 import '../styles/homepage.css';
 import '../styles/checkout.css';
+import '../styles/detail.css';
 import '../styles/complete-checkout.css';
 import '../styles/404-not-found.css';
 
