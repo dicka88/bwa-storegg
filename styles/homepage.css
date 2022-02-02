@@ -83,38 +83,43 @@
 }
 
 .featured-game .featured-game-card {
-  transition: all 0.4s;
+  transition: ease-in-out 0.4s;
   border-radius: 1.625rem;
   width: 205px;
   height: 270px;
 }
 
 .featured-game .featured-game-card:hover {
-  transition: all 0.4s;
-  border: 4px solid #2b2467;
+  transition: ease-in-out 0.4s;
+  border: 3px solid #322981;
+}
+
+.featured-game .featured-game-card img.thumbnail {
+  transition: ease-in-out 0.2s;
 }
 
 .featured-game .featured-game-card:hover img.thumbnail {
-  transition: all 0.4s;
   filter: blur(40px);
-  width: 181px;
-  height: 246px;
+  /* width: 181px; */
+  /* height: 246px; */
 }
 
 .featured-game .featured-game-card .blur-sharp {
   overflow: hidden;
   border-radius: 1.625rem;
+  height: 270px;
 }
 .featured-game .featured-game-card:hover .blur-sharp {
-  width: 192px;
   border: 7px solid white;
+  height: auto;
 }
 
 .featured-game .cover {
-  transition: all 0.4s;
+  transition: ease-in-out 0.4s;
   opacity: 0;
   left: 0;
   right: 0;
+  top: 0;
   height: -webkit-fill-available;
 }
 
