@@ -1,10 +1,12 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
-  iamges: {
+  images: {
     domains: [
       'localhost',
-      'storegg-dk.herokuapp.com'
+      'storegg-dk.herokuapp.com',
+      'cloudinary.com',
+      'res.cloudinary.com',
     ],
   },
 };
