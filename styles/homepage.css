@@ -112,6 +112,7 @@
 .featured-game .featured-game-card:hover .blur-sharp {
   border: 7px solid white;
   height: auto;
+  width: 100%;
 }
 
 .featured-game .cover {

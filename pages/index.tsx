@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import AOS from 'aos';
+import Head from 'next/head';
 import Navbar from '../components/organisms/Navbar';
 import Footer from '../components/organisms/Footer';
 import MainBanner from '../components/organisms/MainBanner';
@@ -15,12 +16,17 @@ function Home() {
 
   return (
     <>
+      <Head>
+        <title>Storegg - Easy Game Topup Platform</title>
+      </Head>
       <Navbar />
-      <MainBanner />
-      <TransactionStep />
-      <FeaturedGames />
-      <Reached />
-      <Story />
+      <div className="container">
+        <MainBanner />
+        <TransactionStep />
+        <FeaturedGames />
+        <Reached />
+        <Story />
+      </div>
       <Footer />
     </>
   );
