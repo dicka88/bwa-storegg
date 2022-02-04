@@ -1,10 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 export default function SignupForm() {
+  const router = useRouter();
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    const { name } = e.target;
+    const { value } = e.target;
+    setForm({ ...form, [name]: value });
+  };
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+
+    localStorage.setItem('user', JSON.stringify(form));
+
+    router.push('/signup-photo');
+  };
+
   return (
-    <form action="">
+    <form onSubmit={handleOnSubmit}>
       <div className="pb-50">
         <Link href="/" passHref>
           <a className="navbar-brand">
@@ -23,6 +45,8 @@ export default function SignupForm() {
           name="name"
           aria-describedby="name"
           placeholder="Enter your name"
+          value={form.name}
+          onChange={handleChange}
         />
       </div>
       <div className="pt-30">
@@ -37,6 +61,8 @@ export default function SignupForm() {
           name="email"
           aria-describedby="email"
           placeholder="Enter your email address"
+          value={form.email}
+          onChange={handleChange}
         />
       </div>
       <div className="pt-30">
@@ -48,18 +74,19 @@ export default function SignupForm() {
           name="password"
           aria-describedby="password"
           placeholder="Your password"
+          value={form.password}
+          onChange={handleChange}
         />
       </div>
       <div className="button-group d-flex flex-column mx-auto pt-50">
-        <a
+        <button
           className="btn btn-sign-up fw-medium text-lg text-white rounded-pill mb-16"
-          href="/signup-photo"
-          role="button"
+          type="submit"
         >
           Continue
-        </a>
+        </button>
         <Link href="/signin" passHref>
-          <a className="btn btn-sign-in fw-medium text-lg color-palette-1 rounded-pill" href="/signin" role="button">
+          <a className="btn btn-sign-in fw-medium text-lg color-palette-1 rounded-pill" role="button">
             Sign In
           </a>
         </Link>
