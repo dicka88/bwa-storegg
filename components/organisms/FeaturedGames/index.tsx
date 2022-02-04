@@ -53,7 +53,12 @@ export default function FeaturedGames() {
               _id, name, category, thumbnail, slug,
             }: GameItemTypes) => (
               <SwiperSlide key={_id}>
-                <GameItem title={name} platform={category.name} link={`/games/${slug}`} image={thumbnail.secure_url} />
+                <GameItem
+                  title={name}
+                  platform={category.name}
+                  link={`/games/${slug}`}
+                  image={thumbnail?.secure_url || '/img/Thumbnail-1.png'}
+                />
               </SwiperSlide>
             ))}
           </Swiper>
