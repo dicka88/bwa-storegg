@@ -1,13 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import Cookie from 'js-cookie';
+import jwtDecode from 'jwt-decode';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
+import { UserTypes } from '../../../services/dataTypes';
 
-interface AuthProps {
-  isLogin?: boolean
-}
+export default function Auth() {
+  const router = useRouter();
+  const [isLogin, setIsLogin] = useState(false);
+  const [user, setUser] = useState({
+    id: '',
+    name: '',
+    username: '',
+    avatar: {
+      secure_url: '',
+    },
+    email: '',
+  });
 
-export default function Auth(props: Partial<AuthProps>) {
-  const { isLogin } = props;
+  useEffect(() => {
+    try {
+      const token = Cookie.get('token');
+
+      if (!token) return;
+
+      const jwtToken = window.atob(token);
+      const payload: UserTypes = jwtDecode(jwtToken);
+
+      setIsLogin(true);
+      setUser(payload);
+    } catch (err) {
+      setIsLogin(false);
+      toast.error('Invalid token');
+    }
+  }, []);
+
+  const handleLogout = () => {
+    Cookie.remove('token');
+    setIsLogin(false);
+    router.push('/');
+  };
 
   if (isLogin) {
     return (
@@ -23,7 +57,7 @@ export default function Auth(props: Partial<AuthProps>) {
             aria-expanded="false"
           >
             <Image
-              src="/img/avatar-1.png"
+              src={user.avatar.secure_url || '/img/avatar-1.png'}
               className="rounded-circle"
               width="40"
               height="40"
@@ -32,7 +66,7 @@ export default function Auth(props: Partial<AuthProps>) {
           </a>
           <ul className="dropdown-menu border-0" aria-labelledby="dropdownMenuLink">
             <li>
-              <Link href="/member/overview">
+              <Link href="/member">
                 <a className="dropdown-item text-lg color-palette-2">My Profile</a>
               </Link>
             </li>
@@ -47,9 +81,9 @@ export default function Auth(props: Partial<AuthProps>) {
               </Link>
             </li>
             <li>
-              <Link href="/signin">
-                <a className="dropdown-item text-lg color-palette-2">Log Out</a>
-              </Link>
+              <button type="button" onClick={handleLogout} className="dropdown-item text-lg color-palette-2">
+                Log Out
+              </button>
             </li>
           </ul>
         </div>
