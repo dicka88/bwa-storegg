@@ -4,18 +4,20 @@ interface NominalItemProps {
     _id: string;
     coinName: string;
     coinQuantity: number;
-    price: number
+    price: number;
+    onChange: () => void;
 }
 
 export default function NominalItem(props: NominalItemProps) {
   const {
-    coinName, coinQuantity, price, _id,
+    coinName, coinQuantity, price, _id, onChange,
   } = props;
 
   return (
     <label
-      className="col-lg-4 col-sm-6 ps-md-2 pe-md-2 pt-md-2 pb-md-2 pt-2 pb-2  "
+      className="col-lg-4 col-sm-6 ps-md-2 pe-md-2 pt-md-2 pb-md-2 pt-2 pb-2"
       htmlFor={_id}
+      onChange={onChange}
     >
       <input className="d-none" type="radio" id={_id} name="topup" value={_id} />
       <div className="detail-card">

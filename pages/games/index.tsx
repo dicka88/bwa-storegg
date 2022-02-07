@@ -27,7 +27,7 @@ export default function GamesPage() {
             {gameList.map(({
               _id, name, slug, category, thumbnail,
             }: GameItemTypes) => (
-              <GameItem key={_id} title={name} platform={category.name} link={`/games/${slug}`} image={thumbnail.secure_url} />
+              <GameItem key={_id} title={name} platform={category.name} link={`/games/${slug}`} image={thumbnail?.secure_url || '/img/Thumbnail-1.png'} />
             ))}
           </div>
         </section>

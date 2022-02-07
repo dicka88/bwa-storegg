@@ -1,3 +1,4 @@
+import { route } from 'next/dist/server/router';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
 import Footer from '../../components/organisms/Footer';
@@ -23,10 +24,16 @@ export default function Detail() {
   const [payments, setPayments] = useState([]);
 
   const getVoucherDetail = useCallback(async (id) => {
-    const data = await getVoucher(id);
-    if (data) {
-      setDetailVoucher(data.voucher);
-      setPayments(data.payment);
+    try {
+      const data = await getVoucher(id);
+
+      if (data) {
+        localStorage.setItem('data-voucher', data.voucher);
+        setDetailVoucher(data.voucher);
+        setPayments(data.payment);
+      }
+    } catch (err) {
+
     }
   }, [getVoucher]);
 
