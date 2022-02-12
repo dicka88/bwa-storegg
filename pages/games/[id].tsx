@@ -1,6 +1,6 @@
-import { route } from 'next/dist/server/router';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import Footer from '../../components/organisms/Footer';
 import Navbar from '../../components/organisms/Navbar';
 import TopupForm from '../../components/organisms/TopupForm';
@@ -28,12 +28,12 @@ export default function Detail() {
       const data = await getVoucher(id);
 
       if (data) {
-        localStorage.setItem('data-voucher', data.voucher);
+        localStorage.setItem('data-voucher', JSON.stringify(data.voucher));
         setDetailVoucher(data.voucher);
         setPayments(data.payment);
       }
     } catch (err) {
-
+      toast.error('Games is unknown');
     }
   }, [getVoucher]);
 
