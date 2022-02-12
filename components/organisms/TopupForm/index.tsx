@@ -50,8 +50,6 @@ export default function TopupForm(props: TopupFormProps) {
       bankAccountName,
     };
 
-    console.log(data);
-
     localStorage.setItem('data-checkout', JSON.stringify(data));
     router.push('/checkout');
 
