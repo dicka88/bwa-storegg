@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function CheckoutComplete() {
   return (
@@ -25,14 +26,19 @@ export default function CheckoutComplete() {
           </p>
         </div>
         <div className="button-group d-flex flex-column mx-auto">
+          <Link href="/member">
+            <a
+              className="btn btn-dashboard fw-medium text-lg text-white rounded-pill mb-16"
+              role="button"
+            >
+              My Dashboard
+            </a>
+          </Link>
           <a
-            className="btn btn-dashboard fw-medium text-lg text-white rounded-pill mb-16"
-            href="../member/overview.html"
+            className="btn btn-whatsapp fw-medium text-lg color-palette-1 rounded-pill"
+            href="https://wa.me/6285555555555?text=Hi%20hi"
             role="button"
           >
-            My Dashboard
-          </a>
-          <a className="btn btn-whatsapp fw-medium text-lg color-palette-1 rounded-pill" href="#" role="button">
             WhatsApp
             ke Admin
           </a>
