@@ -29,8 +29,8 @@ export interface UserTypes {
 
 export interface BankTypes {
   _id: string,
+  name: string,
   bankName: string,
-  bankAccountName: string,
   bankAccountNumber: string
 }
 
@@ -45,4 +45,12 @@ export interface NominalTypes {
   coinName: string;
   coinQuantity: number;
   price: number;
+}
+
+export interface CheckoutTypes {
+  name: string,
+  voucherId: string,
+  verifyId: string,
+  paymentId: string,
+  bankId: string,
 }
