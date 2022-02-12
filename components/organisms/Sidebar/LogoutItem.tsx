@@ -18,9 +18,14 @@ export default function LogoutItem() {
         <Image src="/icon/ic-menu-logout.svg" width="24" height="24" />
       </div>
       <p className="item-title m-0">
-        <button onClick={handleLogout} type="button" className="text-lg text-decoration-none">
+        <a
+          href="#"
+          className="text-lg text-decoration-none"
+          type="button"
+          onClick={handleLogout}
+        >
           Logout
-        </button>
+        </a>
       </p>
     </div>
   );
