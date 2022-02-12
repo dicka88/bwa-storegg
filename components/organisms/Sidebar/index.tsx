@@ -1,22 +1,13 @@
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import React from 'react';
-import Image from 'next/image';
 import Profile from './Profile';
 import Footer from './Footer';
 import MenuItem from './MenuItem';
+import LogoutItem from './LogoutItem';
 
 export default function Sidebar() {
   const router = useRouter();
-
   const path = router.asPath;
-
-  const handleLogout = (e: any) => {
-    e.preventDefault();
-
-    // eslint-disable-next-line no-alert
-    window.alert('Logout');
-  };
 
   return (
     <section className="sidebar">
@@ -29,7 +20,7 @@ export default function Sidebar() {
           <MenuItem title="Card" link="/member/card" icon="/icon/ic-menu-card.svg" active={path === '/member/card'} />
           <MenuItem title="Rewards" link="/member/rewards" icon="/icon/ic-menu-reward.svg" active={path === '/member/rewards'} />
           <MenuItem title="Settings" link="/member/edit-profile" icon="/icon/ic-menu-setting.svg" active={path === '/member/edit-profile'} />
-          <MenuItem title="Log out" link="/member/logout" icon="/icon/ic-menu-logout.svg" active={path === '/member/logout'} />
+          <LogoutItem />
         </div>
         <Footer />
       </div>
