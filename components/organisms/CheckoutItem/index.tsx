@@ -1,21 +1,31 @@
 import React from 'react';
+import { GameItemTypes } from '../../../services/dataTypes';
 
-export default function CheckoutItem() {
+interface CheckoutItemProps {
+  voucher: GameItemTypes
+}
+
+export default function CheckoutItem(props: CheckoutItemProps) {
+  const { voucher } = props;
+
+  const { thumbnail, name, category } = voucher;
+
   return (
     <div className="game-checkout d-flex flex-row align-items-center pt-md-50 pb-md-50 pt-30 pb-30">
       <div className="pe-4">
         <div className="cropped">
-          <img src="/img/Thumbnail-3.png" className="img-fluid" alt="" />
+          <img src={thumbnail.secure_url} className="img-fluid" alt={name} />
         </div>
       </div>
       <div>
         <p className="fw-bold text-xl color-palette-1 mb-10">
-          Mobile Legends:
-          <br />
-          {' '}
-          The New Battle 2021
+          {name}
         </p>
-        <p className="color-palette-2 m-0">Category: Mobile</p>
+        <p className="color-palette-2 m-0">
+          Category:
+          {' '}
+          {category.name}
+        </p>
       </div>
     </div>
   );
