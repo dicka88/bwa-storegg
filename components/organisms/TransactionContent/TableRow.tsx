@@ -4,17 +4,18 @@ import Link from 'next/link';
 import classNames from 'classnames';
 
 interface TableRowProps {
+  _id: string;
   title: string;
   image: string;
-  platform: 'Desktop' | 'Mobile' | 'All';
+  platform: string;
   item: string;
   price: number;
-  status: 'Pending' | 'Success' | 'Failed';
+  status: string;
 }
 
 export default function TableRow(props: TableRowProps) {
   const {
-    title, image, platform, item, price, status,
+    _id, title, image, platform, item, price, status,
   } = props;
 
   const statusClassnames = classNames({
@@ -58,8 +59,8 @@ export default function TableRow(props: TableRowProps) {
         </div>
       </td>
       <td>
-        <Link href="/member/transactions/1">
-          <a href="/member/transactions/1" className="btn btn-status rounded-pill text-sm">Details</a>
+        <Link href={`/member/transactions/${_id}`}>
+          <a className="btn btn-status rounded-pill text-sm">Details</a>
         </Link>
       </td>
     </tr>

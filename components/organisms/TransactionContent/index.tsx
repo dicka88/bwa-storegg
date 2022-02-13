@@ -1,24 +1,76 @@
-import React from 'react';
-import Link from 'next/link';
+import React, { useCallback, useEffect, useState } from 'react';
+import NumberFormat from 'react-number-format';
 import TableRow from './TableRow';
 import ButtonTab from './ButtonTab';
+import { capitalize } from '../../../helpers/string';
+import { getTransactions } from '../../../services/member';
+
+interface TransactionItemTypes {
+  _id: string,
+  value: number,
+  status: 'Pending' | 'Success' | 'Failed',
+  createdAt: string,
+  history: {
+    voucher: {
+      gameName: string,
+      thumbnail: {
+        secure_url: string
+      }
+    },
+    nominal: {
+      coinName: string,
+      coinQuantity: number
+    },
+    category: {
+      name: 'Desktop' | 'Mobile' | 'All'
+    }
+  }
+}
 
 export default function TransactionContent() {
+  const [activeTab, setActiveTab] = useState('all');
+  const [totalSpent, setTotalSpent] = useState(0);
+  const [transactions, setTransactions] = useState([]);
+
+  const getTransactionCallback = useCallback(async (status = 'all') => {
+    const data = await getTransactions(status);
+
+    setTotalSpent(data.total);
+    setTransactions(data.transactions);
+  }, []);
+
+  useEffect(() => {
+    getTransactionCallback();
+  }, []);
+
+  const setTab = (status = '') => {
+    getTransactionCallback(status);
+    setActiveTab(status);
+  };
+
   return (
     <main className="main-wrapper">
       <div className="ps-lg-0">
         <h2 className="text-4xl fw-bold color-palette-1 mb-30">My Transactions</h2>
         <div className="mb-30">
           <p className="text-lg color-palette-2 mb-12">You’ve spent</p>
-          <h3 className="text-5xl fw-medium color-palette-1">Rp 4.518.000.500</h3>
+          <h3 className="text-5xl fw-medium color-palette-1">
+            <NumberFormat
+              value={totalSpent}
+              thousandSeparator="."
+              decimalSeparator=","
+              prefix="Rp. "
+              displayType="text"
+            />
+          </h3>
         </div>
         <div className="row mt-30 mb-20">
           <div className="col-lg-12 col-12 main-content">
             <div id="list_status_title">
-              <ButtonTab title="All Trx" active />
-              <ButtonTab title="Success" />
-              <ButtonTab title="Pending" />
-              <ButtonTab title="Failed" />
+              <ButtonTab onClick={() => setTab('all')} title="All Trx" active={activeTab === 'all'} />
+              <ButtonTab onClick={() => setTab('success')} title="Success" active={activeTab === 'success'} />
+              <ButtonTab onClick={() => setTab('pending')} title="Pending" active={activeTab === 'pending'} />
+              <ButtonTab onClick={() => setTab('failed')} title="Failed" active={activeTab === 'failed'} />
             </div>
           </div>
         </div>
@@ -36,11 +88,18 @@ export default function TransactionContent() {
                 </tr>
               </thead>
               <tbody id="list_status_item">
-                <TableRow title="Mobile Legends" platform="Mobile" image="/img/overview-1.png" item="500 Dm" price={50000} status="Pending" />
-                <TableRow title="Call of Duty: Modern" platform="Desktop" image="/img/overview-2.png" item="500 Dm" price={50000} status="Failed" />
-                <TableRow title="Mobile Legends" platform="Mobile" image="/img/overview-3.png" item="500 Dm" price={50000} status="Pending" />
-                <TableRow title="Mobile Legends" platform="Mobile" image="/img/overview-4.png" item="500 Dm" price={50000} status="Success" />
-                <TableRow title="Mobile Legends" platform="Mobile" image="/img/overview-5.png" item="500 Dm" price={50000} status="Pending" />
+                {transactions.map((item: TransactionItemTypes) => (
+                  <TableRow
+                    key={item._id}
+                    _id={item._id}
+                    title={item.history.voucher.gameName}
+                    platform={item.history.category.name}
+                    image={item.history.voucher.thumbnail.secure_url}
+                    item={`${item.history.nominal.coinQuantity} ${item.history.nominal.coinName}`}
+                    price={item.value}
+                    status={capitalize(item.status)}
+                  />
+                ))}
               </tbody>
             </table>
           </div>
