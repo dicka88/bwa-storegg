@@ -2,6 +2,8 @@ import Image from 'next/image';
 import React from 'react';
 import Input from '../../components/atoms/input';
 import Sidebar from '../../components/organisms/Sidebar';
+import { getUserCookieNode } from '../../helpers/session';
+import { UserTypes } from '../../services/dataTypes';
 
 export default function MemberEditProfile() {
   return (
@@ -48,4 +50,33 @@ export default function MemberEditProfile() {
       </main>
     </section>
   );
+}
+
+interface GetServerSideProps {
+  req: {
+    cookies: {
+      token: string
+    }
+  }
+}
+
+export async function getServerSideProps({ req }: GetServerSideProps) {
+  const { token } = req.cookies;
+
+  try {
+    const payload: UserTypes = getUserCookieNode(token);
+
+    return {
+      props: {
+        user: payload,
+      },
+    };
+  } catch (err) {
+    return {
+      redirect: {
+        destination: `/signin?redirect=${req.url}`,
+        permanent: false,
+      },
+    };
+  }
 }

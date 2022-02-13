@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import CheckoutConfirmation from '../../components/organisms/CheckoutConfirmation';
 import CheckoutDetail from '../../components/organisms/CheckoutDetail';
 import CheckoutItem from '../../components/organisms/CheckoutItem';
+import { getUserCookieNode } from '../../helpers/session';
 import { UserTypes } from '../../services/dataTypes';
 
 interface CheckoutProps {
@@ -84,14 +85,20 @@ export default function Checkout(props: CheckoutProps) {
   );
 }
 
-export async function getServerSideProps({ req }: any) {
+interface GetServerSideProps {
+  req: {
+    url: string,
+    cookies: {
+      token: string
+    }
+  }
+}
+
+export async function getServerSideProps({ req }: GetServerSideProps) {
   const { token } = req.cookies;
 
   try {
-    if (!token) throw new Error('Token is missing');
-
-    const jwtToken = Buffer.from(token, 'base64').toString('ascii');
-    const payload = jwtDecode(jwtToken);
+    const payload: UserTypes = getUserCookieNode(token);
 
     return {
       props: {
@@ -100,8 +107,8 @@ export async function getServerSideProps({ req }: any) {
     };
   } catch (err) {
     return {
-      props: {
-        redirect: '/signin',
+      redirect: {
+        destination: `/signin?redirect=${req.url}`,
         permanent: false,
       },
     };
