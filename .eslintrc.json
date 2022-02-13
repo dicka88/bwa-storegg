@@ -25,12 +25,14 @@
         "react/jsx-props-no-spreading": "off",
         "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
         "jsx-a11y/anchor-is-valid": "off",
+        "no-underscore-dangle": "off",
         "import/extensions": [
             "error",
             "ignorePackages",
             {
                 "jsx": "never",
-                "tsx": "never"
+                "tsx": "never",
+                "ts": "never"
             }
         ]
     },
