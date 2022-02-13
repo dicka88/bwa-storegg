@@ -1,8 +1,7 @@
 import axios from 'axios';
+import { ROOT_API } from '.';
 import callApi from '../config/axios';
 import { CheckoutTypes } from './dataTypes';
-
-const ROOT_API = process.env.NEXT_PUBLIC_API_URL;
 
 export async function getFeatureGame() {
   const response = await axios.get(`${ROOT_API}/api/v1/player/landingpage`);
