@@ -5,15 +5,16 @@ import classNames from 'classnames';
 interface TableRowProps {
   title: string;
   image: string;
-  platform: 'Desktop' | 'Mobile' | 'All';
+  platform: string;
   item: string;
   price: number;
-  status: 'Pending' | 'Success' | 'Failed';
+  status: string;
+  date: string;
 }
 
 export default function TableRow(props: TableRowProps) {
   const {
-    title, image, platform, item, price, status,
+    title, image, platform, item, price, status, date,
   } = props;
 
   const statusClassnames = classNames({
@@ -55,6 +56,12 @@ export default function TableRow(props: TableRowProps) {
             {status}
           </p>
         </div>
+      </td>
+      <td>
+        <p className="fw-medium color-palette-1 m-0">{date}</p>
+      </td>
+      <td>
+        <button className="btn btn" type="button">Detail</button>
       </td>
     </tr>
   );

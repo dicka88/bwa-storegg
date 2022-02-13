@@ -1,8 +1,52 @@
-import React from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
+import { getOverview } from '../../../services/member';
 import TableRow from './TableRow';
 import TopupCategoryCard from './TopupCategoryCard';
+import { capitalize } from '../../../helpers/string';
+
+interface CountItemTypes {
+  _id: string,
+  name: string,
+  value: number
+}
+
+interface TransactionItemTypes {
+  _id: string,
+  value: number,
+  status: 'Pending' | 'Success' | 'Failed',
+  createdAt: string,
+  history: {
+    voucher: {
+      gameName: string,
+      thumbnail: {
+        secure_url: string
+      }
+    },
+    nominal: {
+      coinName: string,
+      coinQuantity: number
+    },
+    category: {
+      name: 'Desktop' | 'Mobile' | 'All'
+    }
+  }
+}
 
 export default function OverviewContent() {
+  const [count, setCount] = useState([]);
+  const [transactions, setTransactions] = useState([]);
+
+  const callOverview = useCallback(async () => {
+    const overview = await getOverview();
+
+    setCount(overview.count);
+    setTransactions(overview.transactions);
+  }, []);
+
+  useEffect(() => {
+    callOverview();
+  }, []);
+
   return (
     <main className="main-wrapper">
       <div className="ps-lg-0">
@@ -12,21 +56,13 @@ export default function OverviewContent() {
           <p className="text-lg fw-medium color-palette-1 mb-14">Top Up Categories</p>
           <div className="main-content">
             <div className="row">
-              <TopupCategoryCard icon="category-game-desktop" amount={180000}>
-                Game
-                <br />
-                Desktop
-              </TopupCategoryCard>
-              <TopupCategoryCard icon="category-game-mobile" amount={50000}>
-                Game
-                <br />
-                Mobile
-              </TopupCategoryCard>
-              <TopupCategoryCard icon="category-other" amount={150000}>
-                Other
-                <br />
-                Categories
-              </TopupCategoryCard>
+              {count.map((item: CountItemTypes) => (
+                <TopupCategoryCard key={item._id} icon="category-game-desktop" amount={item.value}>
+                  Game
+                  <br />
+                  {item.name}
+                </TopupCategoryCard>
+              ))}
             </div>
           </div>
         </div>
@@ -41,14 +77,23 @@ export default function OverviewContent() {
                   <th scope="col">Item</th>
                   <th scope="col">Price</th>
                   <th scope="col">Status</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
-                <TableRow title="Mobile Legends" platform="Mobile" image="/img/overview-1.png" item="500 Dm" price={50000} status="Pending" />
-                <TableRow title="Call of Duty: Modern" platform="Desktop" image="/img/overview-2.png" item="500 Dm" price={50000} status="Failed" />
-                <TableRow title="Mobile Legends" platform="Mobile" image="/img/overview-3.png" item="500 Dm" price={50000} status="Pending" />
-                <TableRow title="Mobile Legends" platform="Mobile" image="/img/overview-4.png" item="500 Dm" price={50000} status="Success" />
-                <TableRow title="Mobile Legends" platform="Mobile" image="/img/overview-5.png" item="500 Dm" price={50000} status="Pending" />
+                {transactions.map((item: TransactionItemTypes) => (
+                  <TableRow
+                    key={item._id}
+                    title={item.history.voucher.gameName}
+                    platform={item.history.category.name}
+                    image={item.history.voucher.thumbnail.secure_url}
+                    item={`${item.history.nominal.coinQuantity} ${item.history.nominal.coinName}`}
+                    price={item.value}
+                    status={capitalize(item.status)}
+                    date={item.createdAt}
+                  />
+                ))}
               </tbody>
             </table>
           </div>
