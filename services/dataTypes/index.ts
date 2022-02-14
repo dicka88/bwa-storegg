@@ -21,6 +21,7 @@ export interface UserTypes {
   id: string,
   name: string,
   username: string,
+  phoneNumber: string,
   avatar: {
     secure_url: string,
   },

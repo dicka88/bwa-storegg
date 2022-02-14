@@ -3,10 +3,15 @@ import React from 'react';
 interface InputProps {
   label: string;
   placeholder: string;
+  value: string
+  name: string;
+  onChange: (e: any) => void;
 }
 
 export default function Input(props: InputProps) {
-  const { label, ...nativeProps } = props;
+  const {
+    label, name, onChange, ...nativeProps
+  } = props;
 
   return (
     <>
@@ -16,8 +21,8 @@ export default function Input(props: InputProps) {
       <input
         type="text"
         className="form-control rounded-pill text-lg"
-        id="name"
-        name="name"
+        name={name}
+        onChange={onChange}
         aria-describedby="name"
         {...nativeProps}
       />

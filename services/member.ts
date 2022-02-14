@@ -36,3 +36,14 @@ export async function getTransactionDetail(token: string, id: string) {
 
   return response.data;
 }
+
+export async function updateProfile(data: FormData) {
+  const response = await callApi({
+    method: 'PUT',
+    url: `${ROOT_API}/api/v1/player/profile`,
+    data,
+    withToken: true,
+  });
+
+  return response.data;
+}

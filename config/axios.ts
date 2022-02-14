@@ -2,22 +2,32 @@ import axios, { AxiosRequestConfig } from 'axios';
 import Cookie from 'js-cookie';
 
 interface CallApiProps extends AxiosRequestConfig {
-  withToken?: boolean
+  withToken?: boolean,
+  serverToken?: string
 }
 
 export default async function callApi({
-  url, method, data, withToken,
+  url, method, data, withToken, serverToken,
 }: CallApiProps) {
   let headers = {};
 
   if (withToken) {
+    let jwtToken = '';
     const token = Cookie.get('token');
 
     if (token) {
-      const jwtToken = window.atob(token);
-
+      jwtToken = window.atob(token);
       headers = {
         Authorization: `Bearer ${jwtToken}`,
+      };
+    }
+  }
+
+  if (serverToken) {
+    const token = Buffer.from(serverToken, 'base64').toString('ascii');
+    if (token) {
+      headers = {
+        Authorization: `Bearer ${token}`,
       };
     }
   }
