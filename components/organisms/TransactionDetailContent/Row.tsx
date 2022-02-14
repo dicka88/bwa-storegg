@@ -2,7 +2,7 @@ import React from 'react';
 
 interface RowProps {
   title: string;
-  value: string;
+  value: string | any;
   classNameValue?: string;
 }
 

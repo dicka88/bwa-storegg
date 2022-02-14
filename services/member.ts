@@ -26,3 +26,13 @@ export async function getTransactions(status: 'all' | 'pending' | 'success' | 'f
 
   return response.data;
 }
+
+export async function getTransactionDetail(token: string, id: string) {
+  const response = await callApi({
+    method: 'GET',
+    url: `${ROOT_API}/api/v1/player/history/${id}/detail`,
+    serverToken: token,
+  });
+
+  return response.data;
+}
