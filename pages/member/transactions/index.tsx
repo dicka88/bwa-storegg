@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import React from 'react';
 import Sidebar from '../../../components/organisms/Sidebar';
 import TransactionContent from '../../../components/organisms/TransactionContent';
