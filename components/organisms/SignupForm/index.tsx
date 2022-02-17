@@ -11,13 +11,13 @@ export default function SignupForm() {
     password: '',
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name } = e.target;
     const { value } = e.target;
     setForm({ ...form, [name]: value });
   };
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = (e: any) => {
     e.preventDefault();
 
     localStorage.setItem('user', JSON.stringify(form));
