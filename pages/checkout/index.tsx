@@ -9,11 +9,7 @@ import CheckoutItem from '../../components/organisms/CheckoutItem';
 import { getUserCookieNode } from '../../helpers/session';
 import { UserTypes } from '../../services/dataTypes';
 
-interface CheckoutProps {
-  user: UserTypes
-}
-
-export default function Checkout(props: CheckoutProps) {
+export default function Checkout() {
   const [checkout, setCheckout] = useState({
     verifyId: '',
     bankAccountName: '',

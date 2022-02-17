@@ -24,7 +24,7 @@ export default function Navbar() {
               <Menu title="Rewards" href="/rewards" active={asPath === '/rewards'} />
               <Menu title="Discover" href="/discover" active={asPath === '/discover'} />
               <Menu title="Global Rank" href="/global-rank" active={asPath === '/global-rank'} />
-              <Auth isLogin={false} />
+              <Auth />
             </ul>
           </div>
         </div>

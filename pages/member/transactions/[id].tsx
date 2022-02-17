@@ -32,8 +32,6 @@ export async function getServerSideProps({ req, params }: GetServerSideProps) {
     const payload: UserTypes = getUserCookieNode(token);
     const transaction = await getTransactionDetail(token, params.id);
 
-    console.log(transaction);
-
     return {
       props: {
         user: payload,
