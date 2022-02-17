@@ -8,6 +8,7 @@ import TransactionStep from '../components/organisms/TransactionStep';
 import FeaturedGames from '../components/organisms/FeaturedGames';
 import Reached from '../components/organisms/Reached';
 import Story from '../components/organisms/Story';
+import SEO from '../components/organisms/SEO';
 
 function Home() {
   useEffect(() => {
@@ -16,9 +17,7 @@ function Home() {
 
   return (
     <>
-      <Head>
-        <title>Storegg - Easy Game Topup Platform</title>
-      </Head>
+      <SEO />
       <Navbar />
       <div className="container">
         <MainBanner />
