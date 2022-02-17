@@ -45,6 +45,9 @@ export default function CheckoutConfirmation() {
     try {
       await postCheckout(data);
 
+      localStorage.removeItem('data-checkout');
+      localStorage.removeItem('data-voucher');
+
       router.push('/checkout-complete');
     } catch (err) {
       toast.error('Checkout failed');
