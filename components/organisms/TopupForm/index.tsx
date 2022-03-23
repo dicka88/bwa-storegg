@@ -1,9 +1,10 @@
-import uuid from 'react-uuid';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
+
 import NominalItem from './NominalItem';
 import PaymentItem from './PaymentItem';
+import uuid from '../../../utils/uuid.js';
 import { BankTypes, NominalTypes, PaymentTypes } from '../../../services/dataTypes';
 
 interface TopupFormProps {
