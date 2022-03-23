@@ -1,21 +1,17 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
+
 import Navbar from '../../components/organisms/Navbar';
 import Footer from '../../components/organisms/Footer';
 import { getFeatureGame } from '../../services/player';
 import { GameItemTypes } from '../../services/dataTypes';
 import GameItem from '../../components/molecules/GameItem';
+import uuid from '../../utils/uuid.js';
+import GameCardPlaceholder from '../../components/atoms/GameCardPlaceholder';
 
 export default function GamesPage() {
-  const [gameList, setGameList] = useState([]);
-
-  const getFeatureGameList = useCallback(async () => {
-    const data = await getFeatureGame();
-    setGameList(data);
-  }, [getFeatureGame, setGameList]);
-
-  useEffect(() => {
-    getFeatureGameList();
-  }, []);
+  const {
+    isLoading, error, data: games, isFetching,
+  } = useQuery('games', getFeatureGame);
 
   return (
     <>
@@ -23,13 +19,23 @@ export default function GamesPage() {
       <div className="container">
         <section className="detail featured-game pt-lg-60 pb-50">
           <h1>Games Page</h1>
-          <div className="d-flex flex-row flex-lg-wrap overflow-setting justify-content-lg-between gap-lg-3 gap-4 aos-init aos-animate">
-            {gameList.map(({
+
+          {isLoading && (
+          <div className="d-flex flex-row flex-lg-wrap overflow-setting justify-content-lg-between gap-lg-3 gap-4">
+            {Array.from({ length: 8 }).map((item) => <GameCardPlaceholder key={uuid()} />)}
+          </div>
+          )}
+
+          <div className="row">
+            {games?.map(({
               _id, name, slug, category, thumbnail,
             }: GameItemTypes) => (
-              <GameItem key={_id} title={name} platform={category.name} link={`/games/${slug}`} image={thumbnail?.secure_url || '/img/Thumbnail-1.png'} />
+              <div className="col-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                <GameItem key={_id} title={name} platform={category.name} link={`/games/${slug}`} image={thumbnail?.secure_url || '/img/Thumbnail-1.png'} />
+              </div>
             ))}
           </div>
+
         </section>
       </div>
       <Footer />

@@ -1,24 +1,20 @@
 /* eslint-disable import/extensions */
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
 import Link from 'next/link';
+import { useQuery } from 'react-query';
+import 'swiper/css';
 
 import GameItem from '../../molecules/GameItem';
 import { getFeatureGame } from '../../../services/player';
 import { GameItemTypes } from '../../../services/dataTypes';
+import GameCardPlaceholder from '../../atoms/GameCardPlaceholder';
+import uuid from '../../../utils/uuid';
 
 export default function FeaturedGames() {
-  const [gameList, setGameList] = useState([]);
-
-  const getFeatureGameList = useCallback(async () => {
-    const data = await getFeatureGame();
-    setGameList(data);
-  }, [getFeatureGame, setGameList]);
-
-  useEffect(() => {
-    getFeatureGameList();
-  }, []);
+  const {
+    isLoading, error, data: games, isFetching,
+  } = useQuery('games', getFeatureGame);
 
   return (
     <section className="featured-game pt-50 pb-50">
@@ -50,7 +46,13 @@ export default function FeaturedGames() {
               },
             }}
           >
-            {gameList.map(({
+            {isLoading && (
+              <div className="d-flex flex-row flex-lg-wrap overflow-setting justify-content-lg-between gap-lg-3 gap-4">
+                {Array.from({ length: 3 }).map((item) => <GameCardPlaceholder key={uuid()} />)}
+              </div>
+            )}
+
+            {games?.map(({
               _id, name, category, thumbnail, slug,
             }: GameItemTypes) => (
               <SwiperSlide key={_id}>

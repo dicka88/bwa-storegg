@@ -1,5 +1,7 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { QueryClientProvider, QueryClient } from 'react-query';
+import { ToastContainer } from 'react-toastify';
 
 import 'aos/dist/aos.css';
 import '../styles/utilities.css';
@@ -22,11 +24,13 @@ import '../styles/edit-profile.css';
 import '../styles/navbar-log-in.css';
 
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
+import 'react-loading-skeleton/dist/skeleton.css';
+
+const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <Head>
         {/* Bootstrap css */}
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossOrigin="anonymous" />
@@ -48,7 +52,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <ToastContainer />
       <Component {...pageProps} />
-    </>
+    </QueryClientProvider>
   );
 }
 export default MyApp;
