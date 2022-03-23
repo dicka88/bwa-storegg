@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import Input from '../../components/atoms/input';
 import Sidebar from '../../components/organisms/Sidebar';
@@ -45,7 +45,7 @@ export default function MemberEditProfile() {
     }
   };
 
-  const handleInputChange = (e: any) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     setUser({
@@ -89,6 +89,15 @@ export default function MemberEditProfile() {
     }
   };
 
+  const handleImageClick = () => {
+    setUser({
+      ...user,
+      avatar: {
+        secure_url: '',
+      },
+    });
+  };
+
   return (
     <section className="edit-profile overflow-auto">
       <Sidebar />
@@ -106,15 +115,10 @@ export default function MemberEditProfile() {
                   </div>
                   {user.avatar.secure_url && (
                   <div
+                    role="button"
                     className="avatar-overlay position-absolute top-0 d-flex justify-content-center align-items-center"
-                    onClick={() => {
-                      setUser({
-                        ...user,
-                        avatar: {
-                          secure_url: null,
-                        },
-                      });
-                    }}
+                    onKeyDown={handleImageClick}
+                    onClick={handleImageClick}
                   >
                     <Image src="/icon/ic-avatar.svg" width="24" height="24" alt="avatar" />
                   </div>
@@ -148,6 +152,7 @@ export default function MemberEditProfile() {
 
 interface GetServerSideProps {
   req: {
+    url: string,
     cookies: {
       token: string
     }

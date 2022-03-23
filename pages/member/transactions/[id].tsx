@@ -5,7 +5,7 @@ import { getUserCookieNode } from '../../../helpers/session';
 import { UserTypes } from '../../../services/dataTypes';
 import { getTransactionDetail } from '../../../services/member';
 
-export default function MemberTransactionDetail({ transaction }) {
+export default function MemberTransactionDetail({ transaction }: any) {
   return (
     <section className="transactions-detail overflow-auto">
       <Sidebar />

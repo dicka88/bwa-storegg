@@ -7,13 +7,14 @@ import PaymentItem from './PaymentItem';
 import uuid from '../../../utils/uuid.js';
 import { BankTypes, NominalTypes, PaymentTypes } from '../../../services/dataTypes';
 
+interface Payment {
+  _id: string;
+  type: string;
+  banks: Array<BankTypes>
+}
 interface TopupFormProps {
   nominals: Array<NominalTypes>;
-  payments: [{
-    _id: string;
-    type: string;
-    banks: Array<BankTypes>
-  }]
+  payments: Array<Payment>
 }
 
 export default function TopupForm(props: TopupFormProps) {

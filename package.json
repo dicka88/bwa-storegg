@@ -22,7 +22,7 @@
     "react-number-format": "^4.9.1",
     "react-toastify": "^8.1.1",
     "react-uuid": "^1.0.2",
-    "swiper": "^8.0.3"
+    "swiper": "^8.0.7"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",

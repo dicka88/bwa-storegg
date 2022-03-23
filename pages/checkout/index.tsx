@@ -1,4 +1,3 @@
-import jwtDecode from 'jwt-decode';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -20,6 +19,7 @@ export default function Checkout() {
       bankName: '',
     },
     nominalItem: {
+      _id: '',
       coinName: '',
       coinQuantity: 0,
       price: 0,

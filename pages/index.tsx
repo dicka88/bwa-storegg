@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import AOS from 'aos';
-import Head from 'next/head';
 import Navbar from '../components/organisms/Navbar';
 import Footer from '../components/organisms/Footer';
 import MainBanner from '../components/organisms/MainBanner';

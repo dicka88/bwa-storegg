@@ -1,11 +1,12 @@
 /* eslint-disable import/extensions */
 import React, { useCallback, useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import Link from 'next/link';
+
 import GameItem from '../../molecules/GameItem';
 import { getFeatureGame } from '../../../services/player';
 import { GameItemTypes } from '../../../services/dataTypes';
-import 'swiper/css';
-import Link from 'next/link';
 
 export default function FeaturedGames() {
   const [gameList, setGameList] = useState([]);
