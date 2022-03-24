@@ -82,6 +82,19 @@ export default function OverviewContent() {
                 </tr>
               </thead>
               <tbody>
+                {transactions.length === 0 && (
+                  <tr>
+                    <td colSpan={5} className="flex justify-center text-center">
+                      <img
+                        src="https://cdn.dribbble.com/users/44167/screenshots/4199208/media/6b915e31225bcd92bee249dc7a977dda.png"
+                        alt="Empty"
+                        style={{ width: '400px' }}
+                      />
+                      <p className="text-center">No transactions found</p>
+                    </td>
+                  </tr>
+                )}
+
                 {transactions.map((item: TransactionItemTypes) => (
                   <TableRow
                     key={item._id}
