@@ -21,8 +21,12 @@ export default function GamesPage() {
           <h1>Games Page</h1>
 
           {isLoading && (
-          <div className="d-flex flex-row flex-lg-wrap overflow-setting justify-content-lg-between gap-lg-3 gap-4">
-            {Array.from({ length: 8 }).map((item) => <GameCardPlaceholder key={uuid()} />)}
+          <div className="row">
+            {Array.from({ length: 8 }).map((item) => (
+              <div className="col-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                <GameCardPlaceholder key={uuid()} />
+              </div>
+            ))}
           </div>
           )}
 
