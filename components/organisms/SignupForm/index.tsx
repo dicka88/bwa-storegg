@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import Logo from '../../atoms/Logo';
 
 export default function SignupForm() {
   const router = useRouter();
@@ -28,11 +29,7 @@ export default function SignupForm() {
   return (
     <form onSubmit={handleOnSubmit}>
       <div className="pb-50">
-        <Link href="/" passHref>
-          <a className="navbar-brand">
-            <Image src="/icon/icon.svg" height={60} width={60} alt="logo" />
-          </a>
-        </Link>
+        <Logo />
       </div>
       <h2 className="text-4xl fw-bold color-palette-1 mb-10">Sign Up</h2>
       <p className="text-lg color-palette-1 m-0">Daftar dan bergabung dengan kami</p>

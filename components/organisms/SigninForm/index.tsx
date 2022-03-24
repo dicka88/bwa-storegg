@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import { signin } from '../../../services/auth';
+import Logo from '../../atoms/Logo';
 
 export default function SigninForm() {
   const router = useRouter();
@@ -57,10 +58,8 @@ export default function SigninForm() {
   return (
     <form onSubmit={handleFormOnSubmit}>
       <div className="container mx-auto">
-        <div className="pb-50">
-          <Link href="/" passHref>
-            <Image src="/icon/icon.svg" alt="Icon" height={60} width={60} />
-          </Link>
+        <div className="pb-50 text-center">
+          <Logo />
         </div>
         <h2 className="text-4xl fw-bold color-palette-1 mb-10">
           Sign In
